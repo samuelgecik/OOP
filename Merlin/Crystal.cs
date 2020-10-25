@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Merlin2d.Game;
 using Merlin2d.Game.Actors;
 
@@ -24,6 +25,16 @@ namespace Merlin
         public void Toggle()
         {
             crystalState = !crystalState;
+            if (crystalState == true)
+            {
+                SetAnimation(crystalOn);
+                crystalOn.Start();
+            }
+            else
+            {
+                SetAnimation(crystalOff);
+                crystalOff.Start();
+            }
         }
 
         public void TurnOn()
