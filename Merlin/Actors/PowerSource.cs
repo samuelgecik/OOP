@@ -7,14 +7,28 @@ namespace Merlin
 {
     public class PowerSource : AbstractActor, ISwitchable, IObservable
     {
-        private Animation sourceOn = new Animation("resources/source_on.png", 56, 32);
-        private Animation sourceOff = new Animation("resources/source_off.png", 56, 32);
+        private readonly Animation animationOn = new Animation("resources/source_on.png", 64, 23);
+        private readonly Animation animationOff = new Animation("resources/source_off.png", 64, 23);
         private bool powerSourceState;
         private List<IObserver> observers = new List<IObserver>();
 
+        public bool PowerSourceState
+        {
+            get
+            {
+                return powerSourceState;
+            }
+            private set
+            {
+                powerSourceState = value;
+            }
+        }
+
         public PowerSource()
         {
-
+            SetAnimation(animationOff);
+            SetPosition(200, 200);
+            animationOff.Start();
         }
 
         public override void Update()
@@ -49,34 +63,33 @@ namespace Merlin
 
         public void Toggle()
         {
-            powerSourceState = !powerSourceState;
-            if (powerSourceState == true)
+            if (IsOn())
             {
-                SetAnimation(sourceOn);
-                sourceOn.Start();
+                TurnOff();
             }
             else
             {
-                SetAnimation(sourceOff);
-                sourceOff.Start();
-            }
-        }
-
-        public void TurnOff()
-        {
-            powerSourceState = true;
-            foreach(Crystal crystal in observers)
-            {
-                crystal.Notify();
+                TurnOn();
             }
         }
 
         public void TurnOn()
         {
-            powerSourceState = false;
+            PowerSourceState = true;
+            SetAnimation(animationOn);
             foreach (Crystal crystal in observers)
             {
-                crystal.Notify();
+                crystal.Notify(this);
+            }
+        }
+
+        public void TurnOff()
+        {
+            PowerSourceState = false;
+            SetAnimation(animationOff);
+            foreach (Crystal crystal in observers)
+            {
+                crystal.Notify(this);
             }
         }
     }

@@ -3,6 +3,6 @@ namespace Merlin
 {
     public interface IObserver
     {
-        void Notify();
+        void Notify(IObservable observable);
     }
 }

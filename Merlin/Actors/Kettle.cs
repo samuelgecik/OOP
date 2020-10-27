@@ -7,13 +7,12 @@ namespace Merlin
 {
     public class Kettle : AbstractActor
     {
+        private readonly Animation initialAnimation = new Animation("resources/kettle.png", 64, 49);
+        private readonly Animation hotAnimation = new Animation("resources/kettle_hot.png", 64, 49);
+        private readonly Animation spilledAnimation = new Animation("resources/kettle_spilled.png", 64, 49);
         private int temperature = 96;
-        private int counter;
         private bool isSpilled = false;
-        private Animation initialAnimation = new Animation("resources/kettle.png", 64, 49);
-        private Animation hotAnimation = new Animation("resources/kettle_hot.png", 64, 49);
-        private Animation spilledAnimation = new Animation("resources/kettle_spilled.png", 64, 49);
-
+        private int counter;
 
         public Kettle()
         {
@@ -33,7 +32,7 @@ namespace Merlin
 
                 if (temperature < 20)
                 {
-                    temperature = 20; //kattle temperature can't go under 20
+                    temperature = 20; // kettle temperature can't go under 20
                 }
 
                 if (temperature > 60)
@@ -45,8 +44,7 @@ namespace Merlin
                 if (temperature > 100)
                 {
                     temperature = 20;
-                    // kettle ignores next changes
-                    isSpilled = true;
+                    isSpilled = true; // kettle ignores next changes
                     SetAnimation(spilledAnimation);
                     spilledAnimation.Start();
                 }

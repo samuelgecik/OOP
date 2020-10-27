@@ -6,18 +6,17 @@ namespace Merlin
 {
     public class Stove : AbstractActor
     {
+        private readonly Animation hotStoveAnimation = new Animation("resources/stove.png", 64, 34);
+        private readonly Animation coldStoveAnimation = new Animation("resources/stove_cold.png", 64, 34);
         private Kettle insertedKettle;
+        private int wood;
         private int counter;
-        private int wood = 3;
-        private Animation stoveAnimation = new Animation("resources/stove.png", 64, 34);
-        private Animation coldStoveAnimation = new Animation("resources/stove_cold.png", 64, 34);
-
 
         public Stove()
         {
-            SetAnimation(stoveAnimation);
+            SetAnimation(hotStoveAnimation);
             SetPosition(170, 170);
-            stoveAnimation.Start();
+            hotStoveAnimation.Start();
         }
 
         public void AddKettle(Kettle kettle)
@@ -33,17 +32,12 @@ namespace Merlin
             if (wood == 0)
             {
                 SetAnimation(coldStoveAnimation);
-                coldStoveAnimation.Start();
             }
-
-            //if (counter++ % 120 == 0) // just to check functionality
-            //{
-            //    this.AddWood();
-            //}
 
             if (counter++ % 60 == 0 && wood > 0)
             {
-                insertedKettle.IncreaseTemperature(1);
+                SetAnimation(hotStoveAnimation);
+                insertedKettle.IncreaseTemperature(wood);
             }         
         }
 
@@ -51,7 +45,7 @@ namespace Merlin
         {
             if (wood < 3)
             {
-                this.wood++;
+                wood++;
             }
         }
 
@@ -59,7 +53,7 @@ namespace Merlin
         {
             if (wood > 0)
             {
-                this.wood--;
+                wood--;
             }
         }
     }
