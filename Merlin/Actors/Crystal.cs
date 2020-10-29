@@ -5,11 +5,10 @@ using Merlin2d.Game.Actors;
 
 namespace Merlin
 {
-    public class Crystal : AbstractActor, ISwitchable, IObserver
+    public class Crystal : AbstractSwitchable, ISwitchable, IObserver
     {
         private Animation animationOn = new Animation("resources/crystal_on.png", 28, 32);
         private Animation animationOff = new Animation("resources/crystal_off.png", 28, 32);
-        private bool crystalState = false;
         private bool hasPower = false;
         private int counter;
 
@@ -22,7 +21,7 @@ namespace Merlin
             if (powerSource != null)
             {
                 powerSource.Subscribe(this);
-                crystalState = powerSource.IsOn();
+                hasPower = powerSource.IsOn();
             }
         }
     
@@ -36,31 +35,7 @@ namespace Merlin
 
         }
 
-        public void Toggle()
-        {
-            if (IsOn())
-            {
-                TurnOff();
-            }
-            else
-            {
-                TurnOn();
-            }
-        }
-
-        public void TurnOn()
-        {
-            crystalState = true;
-            UpdateAnimation();
-        }
-
-        public void TurnOff()
-        {
-            crystalState = false;
-            UpdateAnimation();
-        }
-
-        private void UpdateAnimation()
+        protected override void UpdateAnimation()
         {
             if (hasPower && IsOn())
             {
@@ -72,16 +47,11 @@ namespace Merlin
             }
         }
 
-        public bool IsOn()
-        {
-            return crystalState; 
-        }
-
         public void Notify(IObservable observable)
         {
             if (observable is PowerSource powerSource)
             {
-                if (powerSource.PowerSourceState == true)
+                if (powerSource.IsOn() == true)
                 {
                     hasPower = true;
                 }
