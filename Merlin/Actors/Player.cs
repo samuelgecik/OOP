@@ -13,6 +13,8 @@ namespace Merlin.Actors
 
         private Command moveLeft;
         private Command moveRight;
+        private Command moveUp;
+        private Command moveDown;
         private Command jump;
         private bool facingRight = true;
 
@@ -20,7 +22,13 @@ namespace Merlin.Actors
         {
             moveLeft = new Move(this, -1, 0);
             moveRight = new Move(this, 1, 0);
+<<<<<<< Updated upstream
             jump = new Jump(this, 20);
+=======
+            moveUp = new Move(this, 0, -1);
+            moveDown = new Move(this, 0, 1);
+            jump = new Jump(this, 30);
+>>>>>>> Stashed changes
             SetAnimation(animation);
         }
 
@@ -44,6 +52,16 @@ namespace Merlin.Actors
                     facingRight = true;
                 }
                 moveRight.Execute();
+                animation.Start();
+            }
+            else if (Input.GetInstance().IsKeyDown(Input.Key.UP))
+            {
+                moveUp.Execute();
+                animation.Start();
+            }
+            else if (Input.GetInstance().IsKeyDown(Input.Key.DOWN))
+            {
+                moveDown.Execute();
                 animation.Start();
             }
             else if (Input.GetInstance().IsKeyPressed(Input.Key.SPACE))
