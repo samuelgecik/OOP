@@ -15,7 +15,7 @@ namespace Merlin.Commands
         {
             if (t.GetWorld().IntersectWithWall(t) == false)
             {
-                t.SetPosition(t.GetX(), t.GetY() - (1 * speed));
+                t.SetPosition(t.GetX(), t.GetY() + (1 * speed));
             }
         }
     }
