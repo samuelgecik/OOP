@@ -67,6 +67,5 @@
   <ItemGroup>
     <Folder Include="Commands\" />
     <Folder Include="Actors\" />
-    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>
