@@ -14,7 +14,6 @@ namespace Merlin
         public PowerSource()
         {
             SetAnimation(animationOff);
-            SetPosition(200, 200);
             animationOff.Start();
         }
 

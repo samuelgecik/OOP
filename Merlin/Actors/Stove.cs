@@ -15,7 +15,6 @@ namespace Merlin
         public Stove()
         {
             SetAnimation(hotStoveAnimation);
-            SetPosition(170, 170);
             hotStoveAnimation.Start();
         }
 

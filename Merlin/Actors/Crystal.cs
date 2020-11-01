@@ -15,7 +15,6 @@ namespace Merlin
         public Crystal(PowerSource powerSource)
         {
             SetAnimation(animationOff);
-            SetPosition(200, 250);
             animationOff.Start();
             animationOn.Start();
             if (powerSource != null)
@@ -28,7 +27,7 @@ namespace Merlin
 
         public override void Update()
         {
-            if (counter++ % 120 == 0)
+            if (counter++ % 120 == 0 && hasPower)
             {
                 Toggle();
             }
@@ -58,6 +57,7 @@ namespace Merlin
                 else
                 {
                     hasPower = false;
+                    TurnOff();
                 }
             }
         }

@@ -10,14 +10,13 @@ namespace Merlin
         private readonly Animation initialAnimation = new Animation("resources/kettle.png", 64, 49);
         private readonly Animation hotAnimation = new Animation("resources/kettle_hot.png", 64, 49);
         private readonly Animation spilledAnimation = new Animation("resources/kettle_spilled.png", 64, 49);
-        private int temperature = 96;
+        private int temperature;
         private bool isSpilled = false;
         private int counter;
 
         public Kettle()
         {
-            SetAnimation(initialAnimation); //set animation for kettle
-            SetPosition(100, 100); //set position of the kettle in the game world
+            SetAnimation(initialAnimation);
             initialAnimation.Start();
         }
 
