@@ -1,5 +1,6 @@
 ﻿using System;
 using Merlin.Actors;
+using Merlin.Commands;
 using Merlin2d.Game;
 
 namespace Merlin
@@ -9,6 +10,8 @@ namespace Merlin
         static void Main(string[] args)
         {
             GameContainer container = new GameContainer("window", 650, 400); //constructor, creates new instance of the game
+            Gravity gravity = new Gravity();
+            container.GetWorld().SetPhysics(gravity);
 
             Kettle kettle = new Kettle();
             container.GetWorld().AddActor(kettle);
@@ -34,8 +37,12 @@ namespace Merlin
             Player player = new Player();
             container.GetWorld().AddActor(player);
             player.SetPhysics(true);
-            player.SetPosition(120, 100);
+            player.SetPosition(220, 100);
 
+            Enemy enemy = new Enemy(player, 5, 20, 20);
+            container.GetWorld().AddActor(enemy);
+            enemy.SetPhysics(true);
+            enemy.SetPosition(300, 100);
 
             container.SetMap("resources/maps/map01.tmx");
 
