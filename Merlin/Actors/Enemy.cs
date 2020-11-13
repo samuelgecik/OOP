@@ -61,7 +61,6 @@ namespace Merlin.Actors
                 }
             }
             facingRight = !facingRight;
-            
         }
 
         private bool PlayerInThePlainSight()
