@@ -1,0 +1,67 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/Merlin2d.csproj": {}
+  },
+  "projects": {
+    "/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/Merlin2d.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/Merlin2d.csproj",
+        "projectName": "Merlin2d",
+        "projectPath": "/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/Merlin2d.csproj",
+        "packagesPath": "/Users/samo/.nuget/packages/",
+        "outputPath": "/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/samo/.config/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "http://hades.cit.fei.tuke.sk:8080/v3/index.json": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "MerlinCore": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

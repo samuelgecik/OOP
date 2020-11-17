@@ -1,0 +1,31 @@
+﻿<Properties StartupConfiguration="{37BE4EB4-D9B4-4D16-9DC8-920322C8EBA9}|Default">
+  <MonoDevelop.Ide.Workbench>
+    <Files>
+      <File FileName="Merlin2d/Program.cs" Line="12" Column="6" />
+      <File FileName="Merlin2d/Actors/AbstractActor.cs" Line="70" Column="26" />
+      <File FileName="Merlin2d/Factories/ActorFactory.cs" />
+      <File FileName="Merlin2d/Actors/Player.cs" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Merlin2d" expanded="True">
+            <Node name="Merlin2d" expanded="True">
+              <Node name="Actors" expanded="True">
+                <Node name="AbstractActor.cs" selected="True" />
+              </Node>
+              <Node name="Factories" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.Merlin2d FirstBuild="True" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

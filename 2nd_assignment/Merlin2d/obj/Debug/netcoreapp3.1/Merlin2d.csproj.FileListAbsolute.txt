@@ -1,0 +1,4 @@
+/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/obj/Debug/netcoreapp3.1/Merlin2d.csprojAssemblyReference.cache
+/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/obj/Debug/netcoreapp3.1/Merlin2d.AssemblyInfoInputs.cache
+/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/obj/Debug/netcoreapp3.1/Merlin2d.AssemblyInfo.cs
+/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/obj/Debug/netcoreapp3.1/Merlin2d.csproj.CoreCompileInputs.cache
