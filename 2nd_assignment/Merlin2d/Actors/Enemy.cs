@@ -1,78 +1,81 @@
 ﻿using System;
+using Merlin2d.Commands;
 using Merlin2d.Game;
-using Merlin2d.Game.Actors;
+using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public class Enemy : AbstractActor
+    public class Enemy : AbstractActor, IMovable
     {
         private readonly Animation animation = new Animation("resources/enemy.png", 64, 58);
 
         private int min;
         private int max;
         private int sight;
-        private int x;
-        private int counter;
-
+        private int steps;
         private bool facingRight = true;
 
+        private Move currentMove;
+        private Move moveRight;
+        private Move moveLeft;
         private Player player;
 
         Random random = new Random();
 
-        public int Min { get => min; private set => min = value; }
-        public int Max { get => max; private set => max = value; }
-        public int Sight { get => sight; private set => sight = value; }
-
-        public Enemy(Player player, int minRadius, int maxRadius, int sightOfStevie)
+        public Enemy(string name, Player player, int minRadius,
+                        int maxRadius, int sightOfStevie) : base(name)
         {
             this.player = player;
-            this.Min = minRadius;
-            this.Max = maxRadius;
-            this.Sight = sightOfStevie;
+            this.min = minRadius;
+            this.max = maxRadius;
+            this.sight = sightOfStevie;
             SetAnimation(animation);
+            moveRight = new Move(this, 1, 0, 1, 1);
+            moveLeft = new Move(this, -1, 0, 1, 1);
         }
 
         public override void Update()
         {
-
-            x = random.Next(min, max);
-
-            for(int i = 1; i <= x; i++)
+            if (steps-- <= 0 && !PlayerInThePlainSight())
             {
-                if (facingRight)
-                {
-                    animation.Start();
-                    this.SetPosition(this.GetX() + 1, this.GetY());
-                    while (PlayerInThePlainSight())
-                    {
-                        this.SetPosition(this.GetX() + 1, this.GetY());
-                    }
-                }
-                else
-                {
-                    animation.FlipAnimation();
-                    animation.Start();
-                    this.SetPosition(this.GetX() - 1, this.GetY());
-                    while (PlayerInThePlainSight())
-                    {
-                        this.SetPosition(this.GetX() - 1, this.GetY());
-                    }
-                }
+                steps = random.Next(min, max);
+                animation.FlipAnimation();
+                animation.Start();
+                facingRight = !facingRight;
             }
-            facingRight = !facingRight;
+
+            if (facingRight)
+            {
+                currentMove = moveRight;
+            }
+            else
+            {
+                currentMove = moveLeft;
+            }
+
+            currentMove.Execute();
         }
 
         private bool PlayerInThePlainSight()
         {
             return FacingPlayer()
-                           && Math.Abs(player.GetX() - this.GetX()) <= Sight;
+                           && Math.Abs(player.GetX() - this.GetX()) <= sight;
         }
 
         private bool FacingPlayer()
         {
             return (player.GetX() < this.GetX() && !facingRight)
                 || (player.GetX() > this.GetX() && facingRight);
+        }
+
+        public void SetSpeedStrategy(ISpeedStrategy strategy)
+        {
+            throw new NotImplementedException();
+        }
+
+        public double GetSpeed(double speed)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,10 +1,8 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using Merlin2d.Game;
-using Merlin2d.Game.Actions;
 using Merlin2d.Game.Actors;
 
-namespace Merlin.Commands
+namespace Merlin2d.Commands
 {
     public class Gravity : IPhysics
     {

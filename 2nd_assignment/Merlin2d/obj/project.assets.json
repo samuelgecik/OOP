@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "MerlinCore/2.0.1": {
+      "MerlinCore/2.2.1": {
         "type": "package",
         "dependencies": {
           "Raylib-cs": "3.1.5",
@@ -84,16 +84,16 @@
     }
   },
   "libraries": {
-    "MerlinCore/2.0.1": {
-      "sha512": "CIy4YCtv/K9tcN8wSdg26+KyfXHQDPyIp721FGnGXegCbeqvN3LnHL4LoH3swZcedC7jMfRMcFRjqJIj3DvbNQ==",
+    "MerlinCore/2.2.1": {
+      "sha512": "6RVuoCjQ7OhBMpUIIki+dXsnVpF8UVZOHF7HzmGg5lMp3EppMEsEdMQCx1jCopm9waBQjHIy5w3xkTN20+vvIg==",
       "type": "package",
-      "path": "merlincore/2.0.1",
+      "path": "merlincore/2.2.1",
       "files": [
         ".nupkg.metadata",
         "content/Raylib-cs.targets",
         "contentFiles/any/netcoreapp3.1/Raylib-cs.targets",
         "lib/netcoreapp3.1/Merlin2d.dll",
-        "merlincore.2.0.1.nupkg.sha512",
+        "merlincore.2.2.1.nupkg.sha512",
         "merlincore.nuspec"
       ]
     },
@@ -181,7 +181,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "MerlinCore >= 2.0.1"
+      "MerlinCore >= 2.2.1"
     ]
   },
   "packageFolders": {
@@ -224,7 +224,7 @@
         "dependencies": {
           "MerlinCore": {
             "target": "Package",
-            "version": "[2.0.1, )"
+            "version": "[2.2.1, )"
           }
         },
         "imports": [
