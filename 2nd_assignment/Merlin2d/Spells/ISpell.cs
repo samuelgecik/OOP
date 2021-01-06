@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Merlin2d.Commands;
 
 namespace Merlin2d.Spells

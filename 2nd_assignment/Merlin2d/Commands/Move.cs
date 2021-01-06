@@ -13,21 +13,23 @@ namespace Merlin2d.Commands
         private double speed;
         
 
-        public Move(IMovable movable, int dx, int dy, int step, double speed)
+        public Move(IMovable movable, int dx, int dy, int step)
         {
-            if (movable is IActor)
+            if (movable is IMovable)
             {
                 actor = (IActor)movable;
                 this.dx = dx;
                 this.dy = dy;
                 this.step = step;
-                this.speed = speed;
+                this.speed = movable.GetSpeed(step);
             }
             else
             {
-                throw new ArgumentException("Move class accepts only objects of type IActor");
+                throw new ArgumentException("Move class accepts only objects of type ICharacter");
             }
         }
+
+        // todo: remain manipulation and speed control
 
         public void Execute()
         {

@@ -15,6 +15,7 @@ namespace Merlin2d.Actors
         private ICommand jump;
         private double speed;
         private bool facingRight = true;
+        private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
 
         public Player(string name) : base(name)
         {
@@ -33,7 +34,7 @@ namespace Merlin2d.Actors
 
         public void SetSpeedStrategy(ISpeedStrategy strategy)
         {
-            throw new NotImplementedException();
+            speedStrategy = strategy;
         }
 
         public override void Update()

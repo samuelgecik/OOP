@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tZ8lrXsot+Fj750bZwrBIelC9wwdCtOcniCc/LgEZOaA/TLeavv7xUuTYHX95QfJX5BGy3H22zyYQkcFd10jrw==",
+  "dgSpecHash": "YlVi2gS2GGzDvABF3LV1kRdgFuwLW2UZ6hLZv4GBbfQuTGKAlCrM/Recw+FG9nz7ItQP+NYECFpLjRr3fqWDLQ==",
   "success": true,
   "projectFilePath": "/Users/samo/Documents/School/C#/Merlin/2nd_assignment/Merlin2d/Merlin2d.csproj",
   "expectedPackageFiles": [
-    "/Users/samo/.nuget/packages/merlincore/2.2.1/merlincore.2.2.1.nupkg.sha512",
+    "/Users/samo/.nuget/packages/merlincore/2.4.4/merlincore.2.4.4.nupkg.sha512",
     "/Users/samo/.nuget/packages/raylib-cs/3.1.5/raylib-cs.3.1.5.nupkg.sha512",
     "/Users/samo/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
     "/Users/samo/.nuget/packages/tiledsharp/1.0.1/tiledsharp.1.0.1.nupkg.sha512"

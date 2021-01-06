@@ -1,10 +1,8 @@
 ﻿using System;
 namespace Merlin2d.Spells
 {
-    public class ISpellDirector
+    public interface ISpellDirector
     {
-        public ISpellDirector()
-        {
-        }
+        ISpell Build(string spellName);
     }
 }

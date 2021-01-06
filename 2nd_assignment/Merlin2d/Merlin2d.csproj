@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MerlinCore" Version="2.2.1" />
+    <PackageReference Include="MerlinCore" Version="2.4.4" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Actors\" />

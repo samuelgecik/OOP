@@ -1,22 +1,30 @@
 ﻿using System;
+using System.Collections.Generic;
 using Merlin2d.Commands;
 using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public class AbstractCharacter : AbstractActor, ICharacter
+    public abstract class AbstractCharacter : AbstractActor, ICharacter
     {
-        private double speed;
+        private List<ICommand> effects = new List<ICommand>();
+
         private int health;
+        private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
 
         public AbstractCharacter(string name) : base(name)
         {
             
         }
 
+        public override void Update()
+        {
+            effects.ForEach(e => e.Execute());
+        }
+
         public void AddEffect(ICommand effect)
         {
-            throw new NotImplementedException();
+            effects.Add(effect);
         }
 
         public void ChangeHealth(int delta)
@@ -26,7 +34,7 @@ namespace Merlin2d.Actors
 
         public void Die()
         {
-            throw new NotImplementedException();
+            this.RemoveFromWorld();
         }
 
         public int GetHealth()
@@ -36,17 +44,17 @@ namespace Merlin2d.Actors
 
         public double GetSpeed(double speed)
         {
-            return speed;
+            return speedStrategy.GetSpeed(speed);
         }
 
         public void RemoveEffect(ICommand effect)
         {
-            throw new NotImplementedException();
+            effects.Remove(effect);
         }
 
         public void SetSpeedStrategy(ISpeedStrategy strategy)
         {
-            throw new NotImplementedException();
+            speedStrategy = strategy;
         }
     }
 }

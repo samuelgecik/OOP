@@ -18,6 +18,7 @@ namespace Merlin2d.Actors
         private Move currentMove;
         private Move moveRight;
         private Move moveLeft;
+        private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
         private Player player;
 
         Random random = new Random();
@@ -30,8 +31,8 @@ namespace Merlin2d.Actors
             this.max = maxRadius;
             this.sight = sightOfStevie;
             SetAnimation(animation);
-            moveRight = new Move(this, 1, 0, 1, 1);
-            moveLeft = new Move(this, -1, 0, 1, 1);
+            moveRight = new Move(this, 1, 0, 1);
+            moveLeft = new Move(this, -1, 0, 1);
         }
 
         public override void Update()
@@ -70,12 +71,12 @@ namespace Merlin2d.Actors
 
         public void SetSpeedStrategy(ISpeedStrategy strategy)
         {
-            throw new NotImplementedException();
+            speedStrategy = strategy;
         }
 
         public double GetSpeed(double speed)
         {
-            throw new NotImplementedException();
+            return speedStrategy.GetSpeed(speed);
         }
     }
 }

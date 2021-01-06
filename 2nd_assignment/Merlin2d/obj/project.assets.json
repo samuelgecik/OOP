@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v3.1": {
-      "MerlinCore/2.2.1": {
+      "MerlinCore/2.4.4": {
         "type": "package",
         "dependencies": {
           "Raylib-cs": "3.1.5",
@@ -84,16 +84,16 @@
     }
   },
   "libraries": {
-    "MerlinCore/2.2.1": {
-      "sha512": "6RVuoCjQ7OhBMpUIIki+dXsnVpF8UVZOHF7HzmGg5lMp3EppMEsEdMQCx1jCopm9waBQjHIy5w3xkTN20+vvIg==",
+    "MerlinCore/2.4.4": {
+      "sha512": "BZDOfjsFtlYIj4OfvGfKgsnSJgRQw5/tibwdjRfaOpT3k3PhusULO0wOor8FvW524cKU1a2O4zoBSpkO9oLGag==",
       "type": "package",
-      "path": "merlincore/2.2.1",
+      "path": "merlincore/2.4.4",
       "files": [
         ".nupkg.metadata",
         "content/Raylib-cs.targets",
         "contentFiles/any/netcoreapp3.1/Raylib-cs.targets",
         "lib/netcoreapp3.1/Merlin2d.dll",
-        "merlincore.2.2.1.nupkg.sha512",
+        "merlincore.2.4.4.nupkg.sha512",
         "merlincore.nuspec"
       ]
     },
@@ -181,7 +181,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "MerlinCore >= 2.2.1"
+      "MerlinCore >= 2.4.4"
     ]
   },
   "packageFolders": {
@@ -224,7 +224,7 @@
         "dependencies": {
           "MerlinCore": {
             "target": "Package",
-            "version": "[2.2.1, )"
+            "version": "[2.4.4, )"
           }
         },
         "imports": [
@@ -242,7 +242,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.100/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/5.0.101/RuntimeIdentifierGraph.json"
       }
     }
   }

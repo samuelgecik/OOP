@@ -16,9 +16,9 @@
     <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
   </PropertyGroup>
   <ItemGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Content Include="$(NuGetPackageRoot)merlincore/2.2.1/contentFiles/any/netcoreapp3.1/Raylib-cs.targets" Condition="Exists('$(NuGetPackageRoot)merlincore/2.2.1/contentFiles/any/netcoreapp3.1/Raylib-cs.targets')">
+    <Content Include="$(NuGetPackageRoot)merlincore/2.4.4/contentFiles/any/netcoreapp3.1/Raylib-cs.targets" Condition="Exists('$(NuGetPackageRoot)merlincore/2.4.4/contentFiles/any/netcoreapp3.1/Raylib-cs.targets')">
       <NuGetPackageId>MerlinCore</NuGetPackageId>
-      <NuGetPackageVersion>2.2.1</NuGetPackageVersion>
+      <NuGetPackageVersion>2.4.4</NuGetPackageVersion>
       <NuGetItemType>Content</NuGetItemType>
       <Private>False</Private>
       <Link>Raylib-cs.targets</Link>
