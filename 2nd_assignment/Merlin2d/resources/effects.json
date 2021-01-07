@@ -1,0 +1,14 @@
+﻿[
+  {
+    "name": "directdamage",
+    "cost": 5
+  },
+  {
+    "name": "dot",
+    "cost": 10
+  },
+  {
+    "name": "slow",
+    "cost": 5
+  }
+]
