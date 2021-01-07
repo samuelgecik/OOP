@@ -3,16 +3,13 @@ using System.Collections.Generic;
 using Merlin2d.Actors;
 using Merlin2d.Commands;
 using Merlin2d.Game.Actors;
-using Merlin2d.Strategies;
 
 namespace Merlin2d.Spells
 {
-    public class ProjectileSpell : AbstractActor, IMovable, ISpell
+    public class ProjectileSpell : AbstractMovable, ISpell
     {
         private int cost;
         private IActor caster;
-        private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
-
 
         private List<ICommand> effects;
 
@@ -46,22 +43,15 @@ namespace Merlin2d.Spells
             return cost;
         }
 
-        public double GetSpeed(double speed)
-        {
-            return speedStrategy.GetSpeed(speed);
-        }
-
-        public void SetSpeedStrategy(ISpeedStrategy strategy)
-        {
-            speedStrategy = strategy;
-        }
-
         public override void Update()
         {
-            if (this.GetWorld().GetActors().Exists(a => this.IntersectsWithActor(a)))
+            if (this.GetWorld().GetActors()
+                .Exists(a => this.IntersectsWithActor(a) && a != this.caster && a is ICharacter))
             {
-                // todo: affect the object by spell effects
-            };
+                ICharacter hit = (ICharacter)this.GetWorld().GetActors()
+                    .Find(a => this.IntersectsWithActor(a) && a != this && a is ICharacter);
+                effects.ForEach(e => hit.AddEffect(e));
+            }
         }
     }
 }

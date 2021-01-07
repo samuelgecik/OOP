@@ -5,12 +5,11 @@ using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public abstract class AbstractCharacter : AbstractActor, ICharacter
+    public abstract class AbstractCharacter : AbstractMovable, ICharacter
     {
         private List<ICommand> effects = new List<ICommand>();
 
         private int health;
-        private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
 
         public AbstractCharacter(string name) : base(name)
         {
@@ -19,7 +18,12 @@ namespace Merlin2d.Actors
 
         public override void Update()
         {
-            effects.ForEach(e => e.Execute());
+            // todo: affect the object by spell effects
+
+            effects.ForEach(delegate(ICommand e)
+            { e.Execute();
+              this.RemoveEffect(e);
+            });
         }
 
         public void AddEffect(ICommand effect)
@@ -42,19 +46,10 @@ namespace Merlin2d.Actors
             return health;
         }
 
-        public double GetSpeed(double speed)
-        {
-            return speedStrategy.GetSpeed(speed);
-        }
 
         public void RemoveEffect(ICommand effect)
         {
             effects.Remove(effect);
-        }
-
-        public void SetSpeedStrategy(ISpeedStrategy strategy)
-        {
-            speedStrategy = strategy;
         }
     }
 }

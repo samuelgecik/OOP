@@ -2,7 +2,7 @@
 
 namespace Merlin2d.Actors
 {
-    public interface ICharacter : IMovable
+    public interface ICharacter
     {
         void ChangeHealth(int delta);
         int GetHealth();

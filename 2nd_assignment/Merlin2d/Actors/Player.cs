@@ -5,7 +5,7 @@ using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public class Player : AbstractActor, IMovable
+    public class Player : AbstractMovable, IMovable
     {
         private readonly Animation animation = new Animation("resources/player.png", 64, 58);
         private ICommand moveRight;

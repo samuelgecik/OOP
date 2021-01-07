@@ -6,34 +6,43 @@ namespace Merlin2d.Commands
 {
     public class Move : ICommand
     {
-        private IActor actor;
+        private IMovable actor;
         private int dx;
         private int dy;
         private int step;
         private double speed;
-        
+        private int speedMultiplier;
+        private double remainder = 0;
+
 
         public Move(IMovable movable, int dx, int dy, int step)
         {
             if (movable is IMovable)
             {
-                actor = (IActor)movable;
+                actor = movable;
                 this.dx = dx;
                 this.dy = dy;
                 this.step = step;
-                this.speed = movable.GetSpeed(step);
             }
             else
             {
-                throw new ArgumentException("Move class accepts only objects of type ICharacter");
+                throw new ArgumentException("Move class accepts only objects of type IMovable");
             }
         }
-
-        // todo: remain manipulation and speed control
-
+        
         public void Execute()
         {
-            actor.SetPosition(actor.GetX() + dx, actor.GetY() + dy);
+            remainder = actor.GetStepRemainder();
+            // possible fixme where speed can be adjusted from IMovable via the observer pattern
+            speed = actor.GetSpeed(step);
+            remainder += speed - (int)speed;
+            if (remainder >= 1)
+            {
+                speed++;
+                actor.UpdateStepRemainder(--remainder);
+            }
+            actor.SetPosition(actor.GetX() + dx + (int)speed, actor.GetY() + dy + (int)speed);
+
             while (actor.GetWorld().IntersectWithWall(actor))
             {
                 if (dx != 0 && dy == 0)
