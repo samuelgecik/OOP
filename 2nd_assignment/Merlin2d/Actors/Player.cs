@@ -1,11 +1,12 @@
 ﻿using System;
 using Merlin2d.Commands;
 using Merlin2d.Game;
+using Merlin2d.Spells;
 using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public class Player : AbstractMovable, IMovable
+    public class Player : AbstractCharacter, IWizard
     {
         private readonly Animation animation = new Animation("resources/player.png", 64, 58);
         private ICommand moveRight;
@@ -13,18 +14,32 @@ namespace Merlin2d.Actors
         private ICommand moveUp;
         private ICommand moveDown;
         private ICommand jump;
-        private double speed;
-        private bool facingRight = true;
+        private ActorOrientation orientation = ActorOrientation.FacingRight;
         private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
 
         public Player(string name) : base(name)
         {
-            moveLeft = new Move(this, -1, 0, 1, speed);
-            moveRight = new Move(this, 1, 0, 1, speed);
-            moveUp = new Move(this, 0, -1, 1, speed);
-            moveDown = new Move(this, 0, 1, 1, speed);
+            moveLeft = new Move(this, -1, 0, 1);
+            moveRight = new Move(this, 1, 0, 1);
+            moveUp = new Move(this, 0, -1, 1);
+            moveDown = new Move(this, 0, 1, 1);
             jump = new Jump(this, 30);
             SetAnimation(animation);
+        }
+
+        public void Cast(ISpell spell)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ChangeMana(int delta)
+        {
+            throw new NotImplementedException();
+        }
+
+        public int GetMana()
+        {
+            throw new NotImplementedException();
         }
 
         public double GetSpeed(double speed)

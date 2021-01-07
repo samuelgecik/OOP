@@ -8,9 +8,10 @@ namespace Merlin2d.Spells
         Dictionary<string, SpellInfo> spells;
         Dictionary<string, int> effectCosts;
 
-        public SpellDirector()
+        public SpellDirector(ISpellDataProvider provider)
         {
-
+            spells = provider.GetSpellInfo();
+            effectCosts = provider.GetSpellEffects();
         }
 
         public ISpell Build(string spellName)

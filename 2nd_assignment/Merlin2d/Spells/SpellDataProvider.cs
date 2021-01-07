@@ -30,12 +30,22 @@ namespace Merlin2d.Spells
 
         public Dictionary<string, int> GetSpellEffects()
         {
-            throw new NotImplementedException();
+            if (spellEffects == null)
+            {
+                spellEffects = LoadSpellEffects();
+            }
+
+            return spellEffects;
         }
 
         public Dictionary<string, SpellInfo> GetSpellInfo()
         {
-            throw new NotImplementedException();
+            if (spellInfo == null)
+            {
+                spellInfo = LoadSpellInfo();
+            }
+
+            return spellInfo;
         }
 
         private Dictionary<string, SpellInfo> LoadSpellInfo()
@@ -48,19 +58,24 @@ namespace Merlin2d.Spells
                 try
                 {
                     SpellInfo spellInfo = line;
+                    dictionary[spellInfo.Name] = spellInfo;
                 }
                 catch (ArgumentException e)
                 {
-
+                    throw e;
                 }
             }
+
+            return dictionary;
         }
 
         private Dictionary<string, int> LoadSpellEffects()
         {
             string json = File.ReadAllText("resources/efgects.json");
             List<SpellEffect> effects = JsonConvert.DeserializeObject<List<SpellEffect>>(json);
-            return effects;
+            Dictionary<string, int> nameCost = new Dictionary<string, int>();
+            effects.ForEach(e => nameCost[e.Name] = e.Cost);
+            return nameCost;
         }
 
         private class SpellEffect

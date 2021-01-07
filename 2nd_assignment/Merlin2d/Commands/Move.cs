@@ -9,9 +9,8 @@ namespace Merlin2d.Commands
         private IMovable actor;
         private int dx;
         private int dy;
-        private int step;
+        private double step;
         private double speed;
-        private int speedMultiplier;
         private double remainder = 0;
 
 

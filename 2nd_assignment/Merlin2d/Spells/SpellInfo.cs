@@ -15,13 +15,15 @@ namespace Merlin2d.Spells
         public static implicit operator SpellInfo(string line)
         {
             string[] values = line.Split(";");
+            string[] effects = values[5].Split(",");
 
             SpellInfo info = new SpellInfo
             {
                 Name = values[0],
                 AnimationPath = values[2],
-                // todo: finish
-
+                AnimationWidth = int.Parse(values[3]),
+                AnimationHeight = int.Parse(values[4]),
+                EffectNames = effects,
             };
 
             if (values[1].ToLower().Equals("projectile"))
@@ -34,8 +36,10 @@ namespace Merlin2d.Spells
             }
             else
             {
-                throw new FormatException();
+                throw new FormatException("Inserted value does not match any spell type");
             }
+
+            return info;
         }
     }
 }
