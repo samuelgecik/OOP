@@ -5,7 +5,7 @@ using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public class Enemy : AbstractActor, IMovable
+    public class Enemy : AbstractMovable
     {
         private readonly Animation animation = new Animation("resources/enemy.png", 64, 58);
 

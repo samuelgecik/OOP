@@ -9,6 +9,8 @@ namespace Merlin2d.Spells
     public class SpellDataProvider : ISpellDataProvider
     {
         private static SpellDataProvider instance = null;
+        private static readonly string spellPath = "resources/spells.csv";
+        private static readonly string effectsPath = "resources/effects.json";
 
         private Dictionary<string, int> spellEffects;
         private Dictionary<string, SpellInfo> spellInfo;
@@ -50,7 +52,7 @@ namespace Merlin2d.Spells
 
         private Dictionary<string, SpellInfo> LoadSpellInfo()
         {
-            List<string> lines = File.ReadAllLines("resources/spells.csv").Skip(1).ToList();
+            List<string> lines = File.ReadAllLines(spellPath).Skip(1).ToList();
             Dictionary<string, SpellInfo> dictionary = new Dictionary<string, SpellInfo>();
 
             foreach(string line in lines)
@@ -71,7 +73,7 @@ namespace Merlin2d.Spells
 
         private Dictionary<string, int> LoadSpellEffects()
         {
-            string json = File.ReadAllText("resources/efgects.json");
+            string json = File.ReadAllText(effectsPath);
             List<SpellEffect> effects = JsonConvert.DeserializeObject<List<SpellEffect>>(json);
             Dictionary<string, int> nameCost = new Dictionary<string, int>();
             effects.ForEach(e => nameCost[e.Name] = e.Cost);

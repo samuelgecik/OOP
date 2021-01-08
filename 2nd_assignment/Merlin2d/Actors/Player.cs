@@ -29,7 +29,8 @@ namespace Merlin2d.Actors
 
         public void Cast(ISpell spell)
         {
-            throw new NotImplementedException();
+            ISpellDirector director = new SpellDirector(SpellDataProvider.GetInstance());
+            director.Build("fireball");
         }
 
         public void ChangeMana(int delta)

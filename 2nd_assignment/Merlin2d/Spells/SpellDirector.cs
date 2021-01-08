@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Merlin2d.Game;
 
 namespace Merlin2d.Spells
 {
@@ -17,10 +18,14 @@ namespace Merlin2d.Spells
         public ISpell Build(string spellName)
         {
             ISpellBuilder builder;
+            SpellInfo spellInfo = spells[spellName];
 
-            if (spells[spellName].SpellType == SpellType.Projectile)
+            if (spellInfo.SpellType == SpellType.Projectile)
             {
                 builder = new ProjectileSpellBuilder();
+                Animation animation = new Animation(spellInfo.AnimationPath,
+                    spellInfo.AnimationWidth, spellInfo.AnimationHeight);
+                builder.SetAnimation(animation);
             }
             else
             {
@@ -28,7 +33,7 @@ namespace Merlin2d.Spells
             }
 
             // todo: solve IWizard
-            return builder.CreateSpell();
+            return builder.;
         }
     }
 }

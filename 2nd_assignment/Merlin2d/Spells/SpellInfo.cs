@@ -29,6 +29,10 @@ namespace Merlin2d.Spells
             if (values[1].ToLower().Equals("projectile"))
             {
                 info.SpellType = SpellType.Projectile;
+                if (values[2] == "none")
+                {
+                    throw new FormatException("The projectile spell must have animation path declared");
+                }
             }
             else if (values[1].ToLower().Equals("selfcast"))
             {
