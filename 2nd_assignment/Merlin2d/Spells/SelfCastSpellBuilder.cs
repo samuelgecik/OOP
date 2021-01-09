@@ -1,17 +1,26 @@
 ﻿using System;
+using System.Collections.Generic;
+using Merlin2d.Commands;
 using Merlin2d.Game;
 
 namespace Merlin2d.Spells
 {
     public class SelfCastSpellBuilder : ISpellBuilder
     {
-        public SelfCastSpellBuilder()
-        {
-        }
+        private List<IEffectCommand> effects;
+        private ISpell projectileSpell;
+        private SpellEffectFactory factory = new SpellEffectFactory();
+        private int cost;
 
         public ISpellBuilder AddEffect(string effectName)
         {
-            throw new NotImplementedException();
+            IEffectCommand effect = factory.Create(effectName);
+            if (effect == null)
+            {
+                throw new FormatException("Couldn't find specified effect in my database.");
+            }
+            effects.Add(effect);
+            return this;
         }
 
         public ISpell CreateSpell(IWizard caster)
@@ -26,7 +35,8 @@ namespace Merlin2d.Spells
 
         public ISpellBuilder SetSpellCost(int cost)
         {
-            throw new NotImplementedException();
+            this.cost = cost;
+            return this;
         }
     }
 }

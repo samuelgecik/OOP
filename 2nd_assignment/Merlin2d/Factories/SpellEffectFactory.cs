@@ -7,13 +7,21 @@ namespace Merlin2d.Spells
 {
     public class SpellEffectFactory
     {
-        public SpellEffectFactory()
+        public IEffectCommand Create(string effectName)
         {
-        }
+            switch (effectName.ToLower())
+            {
+                case "slow":
+                    EffectSlow slow = new EffectSlow();
+                    return slow;
 
-        public ICommand Create(string effectType, string actorName, int x, int y)
-        {
-            throw new NotImplementedException();
+                case "fast":
+                    EffectFast fast = new EffectFast();
+                    return fast;
+
+                default:
+                    return null;
+            }
         }
     }
 }

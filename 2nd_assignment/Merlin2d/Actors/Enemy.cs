@@ -18,8 +18,15 @@ namespace Merlin2d.Actors
         private Move currentMove;
         private Move moveRight;
         private Move moveLeft;
-        private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
         private Player player;
+        private ActorOrientation orientation = ActorOrientation.FacingRight;
+        private ActorOrientation right = ActorOrientation.FacingRight;
+        private ActorOrientation left = ActorOrientation.FacingLeft;
+        private Func<ActorOrientation, ActorOrientation> turnBack = x =>
+        {
+            return x = x == ActorOrientation.FacingRight ?
+            ActorOrientation.FacingLeft : ActorOrientation.FacingRight;
+        };
 
         Random random = new Random();
 
@@ -42,10 +49,10 @@ namespace Merlin2d.Actors
                 steps = random.Next(min, max);
                 animation.FlipAnimation();
                 animation.Start();
-                facingRight = !facingRight;
+                orientation = turnBack(orientation);
             }
 
-            if (facingRight)
+            if (orientation == right)
             {
                 currentMove = moveRight;
             }
@@ -67,16 +74,6 @@ namespace Merlin2d.Actors
         {
             return (player.GetX() < this.GetX() && !facingRight)
                 || (player.GetX() > this.GetX() && facingRight);
-        }
-
-        public void SetSpeedStrategy(ISpeedStrategy strategy)
-        {
-            speedStrategy = strategy;
-        }
-
-        public double GetSpeed(double speed)
-        {
-            return speedStrategy.GetSpeed(speed);
         }
     }
 }

@@ -2,35 +2,51 @@
 using System.Collections.Generic;
 using Merlin2d.Commands;
 using Merlin2d.Game;
+using Merlin2d.Game.Actors;
 
 namespace Merlin2d.Spells
 {
     public class ProjectileSpellBuilder : ISpellBuilder
     {
-        private List<ICommand> effects;
-        ISpell projectileSpell;
+        private List<IEffectCommand> effects;
+        private ISpell projectileSpell;
+        private SpellEffectFactory factory = new SpellEffectFactory();
+        private Animation animation;
+        private int cost;
+        private string name;
 
-        public ProjectileSpellBuilder()
+        public ProjectileSpellBuilder(string name)
         {
+            this.name = name;
         }
 
         public ISpellBuilder AddEffect(string effectName)
         {
-            effects.Add(effectName);
+            IEffectCommand effect = factory.Create(effectName);
+            if (effect == null)
+            {
+                throw new FormatException("Couldn't find specified effect in my database.");
+            }
+            effects.Add(effect);
+            return this;
         }
 
         public ISpell CreateSpell(IWizard caster)
         {
+            projectileSpell = new ProjectileSpell(name, cost, caster, (IEnumerable<ICommand>)effects);
+            return projectileSpell;
         }
 
         public ISpellBuilder SetAnimation(Animation animation)
         {
-            throw new NotImplementedException();
+            this.animation = animation;
+            return this;
         }
 
         public ISpellBuilder SetSpellCost(int cost)
         {
-            throw new NotImplementedException();
+            this.cost = cost;
+            return this;
         }
     }
 }

@@ -9,12 +9,12 @@ namespace Merlin2d.Spells
     public class ProjectileSpell : AbstractMovable, ISpell
     {
         private int cost;
-        private IActor caster;
+        private IWizard caster;
 
         private List<ICommand> effects;
 
         public ProjectileSpell(string name, int cost,
-            IActor caster, IEnumerable<ICommand> effects) : base(name)
+            IWizard caster, IEnumerable<ICommand> effects) : base(name)
         {
             this.cost = cost;
             this.caster = caster;

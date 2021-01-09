@@ -15,6 +15,8 @@ namespace Merlin2d.Actors
         private ICommand moveDown;
         private ICommand jump;
         private ActorOrientation orientation = ActorOrientation.FacingRight;
+        private ActorOrientation right = ActorOrientation.FacingRight;
+        private ActorOrientation left = ActorOrientation.FacingLeft;
         private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
 
         public Player(string name) : base(name)
@@ -29,7 +31,7 @@ namespace Merlin2d.Actors
 
         public void Cast(ISpell spell)
         {
-            ISpellDirector director = new SpellDirector(SpellDataProvider.GetInstance());
+            ISpellDirector director = new SpellDirector(SpellDataProvider.GetInstance(), this);
             director.Build("fireball");
         }
 
@@ -43,34 +45,24 @@ namespace Merlin2d.Actors
             throw new NotImplementedException();
         }
 
-        public double GetSpeed(double speed)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetSpeedStrategy(ISpeedStrategy strategy)
-        {
-            speedStrategy = strategy;
-        }
-
         public override void Update()
         {
             if (Input.GetInstance().IsKeyDown(Input.Key.LEFT))
             {
-                if (facingRight)
+                if (orientation == right)
                 {
                     animation.FlipAnimation();
-                    facingRight = false;
+                    orientation = left;
                 }
                 moveLeft.Execute();
                 animation.Start();
             }
             else if (Input.GetInstance().IsKeyDown(Input.Key.RIGHT))
             {
-                if (!facingRight)
+                if (orientation == left)
                 {
                     animation.FlipAnimation();
-                    facingRight = true;
+                    orientation = right;
                 }
                 moveRight.Execute();
                 animation.Start();

@@ -6,10 +6,12 @@ namespace Merlin2d.Spells
 {
     public class SpellDirector : ISpellDirector
     {
+        private IWizard caster;
+
         Dictionary<string, SpellInfo> spells;
         Dictionary<string, int> effectCosts;
 
-        public SpellDirector(ISpellDataProvider provider)
+        public SpellDirector(ISpellDataProvider provider, IWizard caster)
         {
             spells = provider.GetSpellInfo();
             effectCosts = provider.GetSpellEffects();
@@ -19,10 +21,12 @@ namespace Merlin2d.Spells
         {
             ISpellBuilder builder;
             SpellInfo spellInfo = spells[spellName];
+            List<string> thisSpellEffects = (List<string>)spellInfo.EffectNames;
+            int cost = 0;
 
             if (spellInfo.SpellType == SpellType.Projectile)
             {
-                builder = new ProjectileSpellBuilder();
+                builder = new ProjectileSpellBuilder(spellName);
                 Animation animation = new Animation(spellInfo.AnimationPath,
                     spellInfo.AnimationWidth, spellInfo.AnimationHeight);
                 builder.SetAnimation(animation);
@@ -32,8 +36,12 @@ namespace Merlin2d.Spells
                 builder = new SelfCastSpellBuilder();
             }
 
-            // todo: solve IWizard
-            return builder.;
+            foreach (string effect in thisSpellEffects)
+            {
+                cost += effectCosts[effect];
+                builder.AddEffect(effect);
+            }
+            return builder.SetSpellCost(cost).CreateSpell(caster);
         }
     }
 }
