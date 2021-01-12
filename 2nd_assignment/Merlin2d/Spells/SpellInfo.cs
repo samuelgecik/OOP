@@ -19,7 +19,7 @@ namespace Merlin2d.Spells
 
             SpellInfo info = new SpellInfo
             {
-                Name = values[0],
+                Name = values[0].ToLower(),
                 AnimationPath = values[2],
                 AnimationWidth = int.Parse(values[3]),
                 AnimationHeight = int.Parse(values[4]),

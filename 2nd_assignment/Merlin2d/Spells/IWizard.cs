@@ -5,6 +5,6 @@ namespace Merlin2d.Spells
     {
         void ChangeMana(int delta);
         int GetMana();
-        void Cast(ISpell spell);
+        void Cast(string spellName);
     }
 }

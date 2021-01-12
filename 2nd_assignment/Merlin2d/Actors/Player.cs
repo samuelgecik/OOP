@@ -9,44 +9,39 @@ namespace Merlin2d.Actors
     public class Player : AbstractCharacter, IWizard
     {
         private readonly Animation animation = new Animation("resources/player.png", 64, 58);
-        private ICommand moveRight;
-        private ICommand moveLeft;
-        private ICommand moveUp;
-        private ICommand moveDown;
         private ICommand jump;
-        private ActorOrientation orientation = ActorOrientation.FacingRight;
-        private ActorOrientation right = ActorOrientation.FacingRight;
-        private ActorOrientation left = ActorOrientation.FacingLeft;
         private ISpeedStrategy speedStrategy = new NormalSpeedStrategy();
 
-        public Player(string name) : base(name)
-        {
-            moveLeft = new Move(this, -1, 0, 1);
-            moveRight = new Move(this, 1, 0, 1);
-            moveUp = new Move(this, 0, -1, 1);
-            moveDown = new Move(this, 0, 1, 1);
+        public Player(string name, int step) : base(name, step)
+        { 
             jump = new Jump(this, 30);
             SetAnimation(animation);
         }
 
-        public void Cast(ISpell spell)
+        public void Cast(string spellName)
         {
             ISpellDirector director = new SpellDirector(SpellDataProvider.GetInstance(), this);
-            director.Build("fireball");
+            ISpell spell = director.Build(spellName);
+            spell.Cast();
         }
 
         public void ChangeMana(int delta)
         {
-            throw new NotImplementedException();
+            mana = mana + delta >= 0 ? mana + delta : 0;
         }
 
         public int GetMana()
         {
-            throw new NotImplementedException();
+            return mana;
         }
 
         public override void Update()
         {
+            if (Input.GetInstance().IsKeyDown(Input.Key.ONE))
+            {
+                Cast("fireball");
+            }
+
             if (Input.GetInstance().IsKeyDown(Input.Key.LEFT))
             {
                 if (orientation == right)

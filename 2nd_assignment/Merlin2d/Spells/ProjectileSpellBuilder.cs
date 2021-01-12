@@ -8,7 +8,7 @@ namespace Merlin2d.Spells
 {
     public class ProjectileSpellBuilder : ISpellBuilder
     {
-        private List<IEffectCommand> effects;
+        private List<IEffectCommand> effects = new List<IEffectCommand>();
         private ISpell projectileSpell;
         private SpellEffectFactory factory = new SpellEffectFactory();
         private Animation animation;
@@ -33,7 +33,7 @@ namespace Merlin2d.Spells
 
         public ISpell CreateSpell(IWizard caster)
         {
-            projectileSpell = new ProjectileSpell(name, cost, caster, (IEnumerable<ICommand>)effects);
+            projectileSpell = new ProjectileSpell(name, cost, animation, caster, (IEnumerable<ICommand>)effects);
             return projectileSpell;
         }
 

@@ -7,9 +7,10 @@ namespace Merlin2d.Spells
 {
     public class SelfCastSpellBuilder : ISpellBuilder
     {
-        private List<IEffectCommand> effects;
-        private ISpell projectileSpell;
+        private List<IEffectCommand> effects = new List<IEffectCommand>();
         private SpellEffectFactory factory = new SpellEffectFactory();
+        private ISpell selfCastSpell;
+        private Animation animation;
         private int cost;
 
         public ISpellBuilder AddEffect(string effectName)
@@ -25,17 +26,19 @@ namespace Merlin2d.Spells
 
         public ISpell CreateSpell(IWizard caster)
         {
-            throw new NotImplementedException();
+            selfCastSpell = new SelfCastSpell(cost, caster, effects);
+            return selfCastSpell; ;
         }
 
         public ISpellBuilder SetAnimation(Animation animation)
         {
-            throw new NotImplementedException();
+            this.animation = animation;
+            return this;
         }
 
         public ISpellBuilder SetSpellCost(int cost)
         {
-            this.cost = cost;
+            this.cost = (int)(cost * 0.7);
             return this;
         }
     }

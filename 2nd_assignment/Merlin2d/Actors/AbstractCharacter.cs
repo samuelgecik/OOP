@@ -9,9 +9,10 @@ namespace Merlin2d.Actors
     {
         private List<ICommand> effects = new List<ICommand>();
 
-        private int health;
+        protected int health;
+        protected int mana;
 
-        public AbstractCharacter(string name) : base(name)
+        public AbstractCharacter(string name, int step) : base(name, step)
         {
             
         }

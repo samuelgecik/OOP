@@ -15,11 +15,6 @@ namespace Merlin2d.Spells
         private Dictionary<string, int> spellEffects;
         private Dictionary<string, SpellInfo> spellInfo;
 
-
-        public SpellDataProvider()
-        {
-        }
-
         public static SpellDataProvider GetInstance()
         {
             if (instance == null)

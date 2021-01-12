@@ -12,7 +12,7 @@ namespace Merlin2d.Factories
             switch (actorType)
             {
                 case "Player":
-                    Player player = new Player(actorName);
+                    Player player = new Player(actorName, 1);
                     player.SetPosition(x, y);
                     return player;
 

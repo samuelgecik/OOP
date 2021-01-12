@@ -15,6 +15,7 @@ namespace Merlin2d.Spells
         {
             spells = provider.GetSpellInfo();
             effectCosts = provider.GetSpellEffects();
+            this.caster = caster;
         }
 
         public ISpell Build(string spellName)

@@ -5,7 +5,7 @@ using Merlin2d.Strategies;
 
 namespace Merlin2d.Actors
 {
-    public class Enemy : AbstractMovable
+    public class Skeleton : AbstractMovable
     {
         private readonly Animation animation = new Animation("resources/enemy.png", 64, 58);
 
@@ -13,15 +13,8 @@ namespace Merlin2d.Actors
         private int max;
         private int sight;
         private int steps;
-        private bool facingRight = true;
-
-        private Move currentMove;
-        private Move moveRight;
-        private Move moveLeft;
         private Player player;
-        private ActorOrientation orientation = ActorOrientation.FacingRight;
-        private ActorOrientation right = ActorOrientation.FacingRight;
-        private ActorOrientation left = ActorOrientation.FacingLeft;
+
         private Func<ActorOrientation, ActorOrientation> turnBack = x =>
         {
             return x = x == ActorOrientation.FacingRight ?
@@ -30,16 +23,14 @@ namespace Merlin2d.Actors
 
         Random random = new Random();
 
-        public Enemy(string name, Player player, int minRadius,
-                        int maxRadius, int sightOfStevie) : base(name)
+        public Skeleton(string name, int step, Player player, int minRadius,
+                        int maxRadius, int sightOfStevie) : base(name, step)
         {
             this.player = player;
             this.min = minRadius;
             this.max = maxRadius;
             this.sight = sightOfStevie;
             SetAnimation(animation);
-            moveRight = new Move(this, 1, 0, 1);
-            moveLeft = new Move(this, -1, 0, 1);
         }
 
         public override void Update()
@@ -72,8 +63,8 @@ namespace Merlin2d.Actors
 
         private bool FacingPlayer()
         {
-            return (player.GetX() < this.GetX() && !facingRight)
-                || (player.GetX() > this.GetX() && facingRight);
+            return (player.GetX() < this.GetX() && orientation == left)
+                || (player.GetX() > this.GetX() && orientation == right);
         }
     }
 }

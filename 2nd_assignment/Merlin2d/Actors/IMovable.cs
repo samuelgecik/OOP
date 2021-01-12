@@ -10,5 +10,6 @@ namespace Merlin2d.Actors
         double GetSpeed(double speed);
         double GetStepRemainder();
         void UpdateStepRemainder(double delta);
+        ActorOrientation GetOrientation();
     }
 }
