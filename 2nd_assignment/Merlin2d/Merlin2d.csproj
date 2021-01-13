@@ -16,6 +16,7 @@
     <Folder Include="Items\" />
     <Folder Include="Spells\" />
     <Folder Include="Strategies\" />
+    <Folder Include="Actors\State\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Spells\EmptyClass.cs" />

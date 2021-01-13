@@ -37,7 +37,7 @@ namespace Merlin2d.Actors
             health += delta;
         }
 
-        public void Die()
+        public virtual void Die()
         {
             this.RemoveFromWorld();
         }

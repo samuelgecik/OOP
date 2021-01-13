@@ -19,7 +19,7 @@ namespace Merlin2d.Actors
             this.name = name;
         }
 
-        public Animation GetAnimation()
+        public virtual Animation GetAnimation()
         {
             return animation;
         }

@@ -10,7 +10,6 @@ namespace Merlin2d.Spells
         private List<IEffectCommand> effects = new List<IEffectCommand>();
         private SpellEffectFactory factory = new SpellEffectFactory();
         private ISpell selfCastSpell;
-        private Animation animation;
         private int cost;
 
         public ISpellBuilder AddEffect(string effectName)
@@ -32,8 +31,7 @@ namespace Merlin2d.Spells
 
         public ISpellBuilder SetAnimation(Animation animation)
         {
-            this.animation = animation;
-            return this;
+            throw new FormatException("Self cast spell does not have an animation.");
         }
 
         public ISpellBuilder SetSpellCost(int cost)
